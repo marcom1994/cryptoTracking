@@ -1,6 +1,4 @@
-from projects.cryptoTracking.src.dao.CallAPICoinRanking import CallAPICoinRanking
 from projects.cryptoTracking.src.dao.converterExchange.CallApiAlphaVantage import CallApiAlphaVantage
-from projects.cryptoTracking.src.dao.CallApiNomics import CallApiNomics
 from projects.cryptoTracking.src.dao.CallApiCoinLore import CallApiCoinLore
 from projects.cryptoTracking.src.constants.Constants import Constants as constants
 from projects.cryptoTracking.src.dao.db.ExchangeRateDAO import ExchangeRateDAO
