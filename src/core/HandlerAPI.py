@@ -1,7 +1,7 @@
-from projects.cryptoTracking.src.dao.converterExchange.CallApiAlphaVantage import CallApiAlphaVantage
-from projects.cryptoTracking.src.dao.CallApiCoinLore import CallApiCoinLore
-from projects.cryptoTracking.src.constants.Constants import Constants as constants
-from projects.cryptoTracking.src.dao.db.ExchangeRateDAO import ExchangeRateDAO
+from src.dao.converterExchange.CallApiAlphaVantage import CallApiAlphaVantage
+from src.dao.CallApiCoinLore import CallApiCoinLore
+from src.constants.Constants import Constants as constants
+from src.dao.db.ExchangeRateDAO import ExchangeRateDAO
 
 from datetime import datetime
 
@@ -41,7 +41,7 @@ class HandlerAPI:
         dateDifference = dateNow - dateLastCall
         hoursDifference = dateDifference.total_seconds() / 3600
 
-        # Call api for retrieve exchangeRate each hour
+        # Call api for retrieve echangeRate each hour
         if(hoursDifference > 1):
             exchangeRate = self.callApiAlphaVantage.retrieveExchangeRateFromApi("USD",currency)
             exchangeRateDAO.updateTimestampExchangeRate(float(exchangeRate))

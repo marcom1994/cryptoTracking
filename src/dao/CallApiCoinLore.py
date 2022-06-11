@@ -1,5 +1,5 @@
-from projects.cryptoTracking.src.model.Crypto import Crypto
-from projects.cryptoTracking.src.constants.Constants import Constants as constants
+from src.model.Crypto import Crypto
+from src.constants.Constants import Constants
 
 import requests
 import configparser
@@ -26,7 +26,7 @@ class CallApiCoinLore:
     logger = logging.getLogger("logger")
     
     config = configparser.ConfigParser()
-    config.read(constants.API_PROPERTIES_FILE_PATH)
+    config.read(Constants.API_PROPERTIES_FILE_PATH)
     headers = {
 	    "X-RapidAPI-Host": config['APICoinLoreSection']['X-RapidAPI-Host'],
 	    "X-RapidAPI-Key": config['APICoinLoreSection']['X-RapidAPI-Key']
@@ -56,10 +56,10 @@ class CallApiCoinLore:
                     cryptoDict[crypto.name] = crypto
                     #print(crypto)
             except Exception as e:
-                print(constants.MSG_CALL_API %("retrieveFirstNCrypto", str(response.status_code), str(e)))
-                self.logger.error(constants.MSG_CALL_API %("retrieveFirstNCrypto", str(response.status_code), str(e)))
+                print(Constants.MSG_CALL_API %("retrieveFirstNCrypto", str(response.status_code), str(e)))
+                self.logger.error(Constants.MSG_CALL_API %("retrieveFirstNCrypto", str(response.status_code), str(e)))
             time.sleep(1)
-            self.logger.info(constants.MSG_CALL_API_ONLY_STATUS_CODE %("retrieveFirstNCrypto", str(response.status_code)))
+            self.logger.info(Constants.MSG_CALL_API_ONLY_STATUS_CODE %("retrieveFirstNCrypto", str(response.status_code)))
         return cryptoDict
 
     def __getArrayQueryStringLimit__(self, limitApiForPage, numberCrypto):
@@ -83,10 +83,10 @@ class CallApiCoinLore:
                 crypto = Crypto(coin['id'], coin['name'], coin['price_usd'], coin['rank'])
                 #print(crypto)
         except Exception as e:
-            print(constants.MSG_CALL_API %("retrieveCryptoById", str(response.status_code), str(e)))
-            self.logger.error(constants.MSG_CALL_API %("retrieveCryptoById", str(response.status_code), str(e)))
+            print(Constants.MSG_CALL_API %("retrieveCryptoById", str(response.status_code), str(e)))
+            self.logger.error(Constants.MSG_CALL_API %("retrieveCryptoById", str(response.status_code), str(e)))
         time.sleep(1)
-        self.logger.info(constants.MSG_CALL_API_ONLY_STATUS_CODE %("retrieveCryptoById", str(response.status_code)))
+        self.logger.info(Constants.MSG_CALL_API_ONLY_STATUS_CODE %("retrieveCryptoById", str(response.status_code)))
         return crypto
 
 '''

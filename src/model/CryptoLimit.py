@@ -1,6 +1,4 @@
 
-from unicodedata import name
-
 
 class CryptoLimit:
     

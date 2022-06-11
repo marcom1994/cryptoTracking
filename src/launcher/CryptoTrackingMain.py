@@ -1,13 +1,13 @@
 import multiprocessing
-from projects.cryptoTracking.src.constants.Constants import Constants as constants
-from projects.cryptoTracking.src.core.CryptoTrackingCore import CryptoTrackingCore
+from src.constants.Constants import Constants
+from src.core.CryptoTrackingCore import CryptoTrackingCore
 from logging.handlers import RotatingFileHandler
 import logging
 import configparser
 from telegram.ext import Updater, CommandHandler
-from projects.cryptoTracking.src.model.Crypto import Crypto
-from projects.cryptoTracking.src.telegram.HandlerTelegram import HandlerTelegram
-from projects.cryptoTracking.src.dao.converterExchange.CallApiAlphaVantage import CallApiAlphaVantage
+from src.model.Crypto import Crypto
+from src.telegram.HandlerTelegram import HandlerTelegram
+from src.dao.converterExchange.CallApiAlphaVantage import CallApiAlphaVantage
 
 import schedule
 
@@ -17,7 +17,7 @@ class CryptoTrackingMain:
     callApiAlphaVantage = CallApiAlphaVantage()
 
     config = configparser.ConfigParser()
-    config.read(constants.TELEGRAM_PROPERTIES_FILE_PATH)
+    config.read(Constants.TELEGRAM_PROPERTIES_FILE_PATH)
     bot_token = config['TelegramBot']['token']
     bot_chatID = config['TelegramBot']['chat-id']
 
@@ -35,7 +35,7 @@ class CryptoTrackingMain:
         logger.setLevel(logging.INFO)
         formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
         logger.propagate=False  # Non propaga i log anche in console
-        file_handler = RotatingFileHandler(constants.PATH_LOG, maxBytes=constants.MAX_SIZE_LOG, backupCount=constants.MAX_FILES_LOG, encoding=constants.ENCODE)
+        file_handler = RotatingFileHandler(Constants.PATH_LOG, maxBytes=Constants.MAX_SIZE_LOG, backupCount=Constants.MAX_FILES_LOG, encoding=Constants.ENCODE)
         file_handler.setLevel(logging.INFO)
         file_handler.setFormatter(formatter)
         logger.addHandler(file_handler)

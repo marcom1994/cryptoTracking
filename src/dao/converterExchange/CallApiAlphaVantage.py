@@ -1,10 +1,8 @@
-from projects.cryptoTracking.src.dao.db.ExchangeRateDAO import ExchangeRateDAO
-from projects.cryptoTracking.src.model.Crypto import Crypto
-from projects.cryptoTracking.src.constants.Constants import Constants as constants
+from src.dao.db.ExchangeRateDAO import ExchangeRateDAO
+from src.constants.Constants import Constants
 
 import requests
 import configparser
-import re
 import datetime
 import requests
 import logging
@@ -16,7 +14,7 @@ class CallApiAlphaVantage:
     logger = logging.getLogger("logger")
     
     config = configparser.ConfigParser()
-    config.read(constants.API_PROPERTIES_FILE_PATH)
+    config.read(Constants.API_PROPERTIES_FILE_PATH)
     headers = {
 	    "X-RapidAPI-Host": config['APIAlphaVantageSection']['X-RapidAPI-Host'],
 	    "X-RapidAPI-Key": config['APIAlphaVantageSection']['X-RapidAPI-Key']
@@ -39,15 +37,15 @@ class CallApiAlphaVantage:
             realTimeExchangeRate = data['Realtime Currency Exchange Rate']
             exchangeRate = realTimeExchangeRate['5. Exchange Rate']
         except Exception as e:
-            print(constants.MSG_CALL_API %("retrieveExchangeRateFromApi", str(response.status_code), str(e)))
-            self.logger.error(constants.MSG_CALL_API %("retrieveExchangeRateFromApi", str(response.status_code), str(e)))
-        self.logger.info(constants.MSG_CALL_API %("retrieveExchangeRateFromApi", str(response.status_code), str(exchangeRate)))
+            print(Constants.MSG_CALL_API %("retrieveExchangeRateFromApi", str(response.status_code), str(e)))
+            self.logger.error(Constants.MSG_CALL_API %("retrieveExchangeRateFromApi", str(response.status_code), str(e)))
+        self.logger.info(Constants.MSG_CALL_API %("retrieveExchangeRateFromApi", str(response.status_code), str(exchangeRate)))
         return exchangeRate
 
     def retrieveExchangeRateFromDB(self):
         exchangeRateDAO = ExchangeRateDAO()
         exchangeRate = exchangeRateDAO.retrieveExchangeRateValue()
-        self.logger.info(constants.MSG_CALL_DB %("retrieveExchangeRateFromDB", str(exchangeRate)))
+        self.logger.info(Constants.MSG_CALL_DB %("retrieveExchangeRateFromDB", str(exchangeRate)))
         return exchangeRate
 
 

@@ -1,10 +1,7 @@
-from projects.cryptoTracking.src.model.Crypto import Crypto
-from projects.cryptoTracking.src.constants.Constants import Constants as constants
+from src.constants.Constants import Constants
 
 import requests
 import configparser
-import re
-import time
 import requests
 import logging
 
@@ -18,7 +15,7 @@ class CallApiCurrencyExchange:
     logger = logging.getLogger("logger")
     
     config = configparser.ConfigParser()
-    config.read(constants.API_PROPERTIES_FILE_PATH)
+    config.read(Constants.API_PROPERTIES_FILE_PATH)
     headers = {
 	    "X-RapidAPI-Host": config['APICurrencyExchangeSection']['X-RapidAPI-Host'],
 	    "X-RapidAPI-Key": config['APICurrencyExchangeSection']['X-RapidAPI-Key']

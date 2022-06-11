@@ -1,16 +1,16 @@
 import logging
 import psycopg2
 import configparser
-from projects.cryptoTracking.src.constants.Constants import Constants as constants
-from projects.cryptoTracking.src.constants.QueryConstants import QueryConstants as query
-from projects.cryptoTracking.src.model.CryptoLimit import CryptoLimit
+from src.constants.Constants import Constants
+from src.constants.QueryConstants import QueryConstants
+from src.model.CryptoLimit import CryptoLimit
 
 
 class CryptoTrackDAO:
 
     logger = logging.getLogger("logger")
     config = configparser.ConfigParser()
-    config.read(constants.DB_PROPERTIES_FILE_PATH)
+    config.read(Constants.DB_PROPERTIES_FILE_PATH)
     dbProperties = config['DBSection']
 
     def __init__(self):
@@ -20,7 +20,7 @@ class CryptoTrackDAO:
         cryptoLimitList = []
         with(psycopg2.connect(dbname=self.dbProperties['dbname'], user=self.dbProperties['user'], password=self.dbProperties['password'], host=self.dbProperties['host']) as connection):
             cursor = connection.cursor()
-            cursor.execute(query.RETRIEVE_CRYPTO_TO_TRACK)
+            cursor.execute(QueryConstants.RETRIEVE_CRYPTO_TO_TRACK)
             data = cursor.fetchall()
             #Convert:
             for crypto in data:
@@ -33,14 +33,14 @@ class CryptoTrackDAO:
     def updateCryptoLimitPriceBuyToTrack(self, id, price):
         with(psycopg2.connect(dbname=self.dbProperties['dbname'], user=self.dbProperties['user'], password=self.dbProperties['password'], host=self.dbProperties['host']) as connection):
             cursor = connection.cursor()
-            cursor.execute(query.UPDATE_CRYPTO_PRICE_BUY_TO_TRACK %(price, id))
+            cursor.execute(QueryConstants.UPDATE_CRYPTO_PRICE_BUY_TO_TRACK %(price, id))
             connection.commit()
             cursor.close()
     
     def updateCryptoLimitPriceSellToTrack(self, id, price):
         with(psycopg2.connect(dbname=self.dbProperties['dbname'], user=self.dbProperties['user'], password=self.dbProperties['password'], host=self.dbProperties['host']) as connection):
             cursor = connection.cursor()
-            cursor.execute(query.UPDATE_CRYPTO_PRICE_SELL_TO_TRACK %(price, id))
+            cursor.execute(QueryConstants.UPDATE_CRYPTO_PRICE_SELL_TO_TRACK %(price, id))
             connection.commit()
             cursor.close()
 
@@ -50,7 +50,7 @@ class CryptoTrackDAO:
         coinLoreNameToIdDict = {}
         with(psycopg2.connect(dbname=self.dbProperties['dbname'], user=self.dbProperties['user'], password=self.dbProperties['password'], host=self.dbProperties['host']) as connection):
             cursor = connection.cursor()
-            cursor.execute(query.RETRIEVE_ALL_CRYPTO_ID)
+            cursor.execute(QueryConstants.RETRIEVE_ALL_CRYPTO_ID)
             listNameId = cursor.fetchall()
             for nameId in listNameId:
                 coinLoreNameToIdDict[nameId[1]] = nameId[0]
@@ -61,7 +61,7 @@ class CryptoTrackDAO:
     def retrieveCryptoIdByName(self, name):
         with(psycopg2.connect(dbname=self.dbProperties['dbname'], user=self.dbProperties['user'], password=self.dbProperties['password'], host=self.dbProperties['host']) as connection):
             cursor = connection.cursor()
-            cursor.execute(query.RETRIEVE_CRYPTO_ID_BY_NAME %(name))
+            cursor.execute(QueryConstants.RETRIEVE_CRYPTO_ID_BY_NAME %(name))
             id = cursor.fetchone()
             if(id):
                 id = id[0]

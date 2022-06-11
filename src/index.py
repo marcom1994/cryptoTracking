@@ -4,8 +4,10 @@ from projects.cryptoTracking.src.launcher.CryptoTrackingMain import CryptoTracki
 app = Flask(__name__)
 
 
+
+
 @app.route('/')
 def home():
     cryptoTrackingLauncher = CryptoTrackingMain()
-    return cryptoTrackingLauncher.main()
+    cryptoTrackingLauncher.main()
 

@@ -2,9 +2,7 @@ import logging
 import requests
 import configparser
 import logging
-import telegram
-from telegram.ext import Updater, CommandHandler
-from projects.cryptoTracking.src.constants.Constants import Constants as constants
+from src.constants.Constants import Constants as constants
 
 class HandlerTelegram:
 

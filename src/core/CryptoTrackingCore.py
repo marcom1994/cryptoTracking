@@ -1,10 +1,10 @@
-from projects.cryptoTracking.src.core.HandlerAPI import HandlerAPI
+from src.core.HandlerAPI import HandlerAPI
 
 import logging
-from projects.cryptoTracking.src.dao.db.CryptoTrackDAO import CryptoTrackDAO
+from src.dao.db.CryptoTrackDAO import CryptoTrackDAO
 
-from projects.cryptoTracking.src.constants.Constants import Constants as constants
-from projects.cryptoTracking.src.telegram.HandlerTelegram import HandlerTelegram
+from src.constants.Constants import Constants as constants
+from src.telegram.HandlerTelegram import HandlerTelegram
 
 from logging.handlers import RotatingFileHandler
 

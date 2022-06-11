@@ -1,5 +1,5 @@
-from projects.cryptoTracking.src.model.Crypto import Crypto
-from projects.cryptoTracking.src.constants.Constants import Constants as constants
+from src.model.Crypto import Crypto
+from src.constants.Constants import Constants
 
 import requests
 import configparser
@@ -20,7 +20,7 @@ class CallApiNomics:
     logger = logging.getLogger("logger")
     
     config = configparser.ConfigParser()
-    config.read(constants.API_PROPERTIES_FILE_PATH)
+    config.read(Constants.API_PROPERTIES_FILE_PATH)
     apiKey = config['APINomicsSection']['X-CoinRanking-Key']
 
     def __init__(self):
@@ -44,9 +44,9 @@ class CallApiNomics:
                     x-=1
                 time.sleep(1)
             except Exception as e:
-                self.logger.error(constants.MSG_CALL_API %("retrieveGodsUnchainedInfo", str(response.status_code), str(e)))
+                self.logger.error(Constants.MSG_CALL_API %("retrieveGodsUnchainedInfo", str(response.status_code), str(e)))
                 raise Exception("Exception: " + str(e))
-        self.logger.info(constants.MSG_CALL_API %("retrieveGodsUnchainedInfo", str(response.status_code), str(crypto)))
+        self.logger.info(Constants.MSG_CALL_API %("retrieveGodsUnchainedInfo", str(response.status_code), str(crypto)))
         return crypto
 
     def retrieveFirstOneHundredCrypto(self):
@@ -59,7 +59,7 @@ class CallApiNomics:
                 crypto = Crypto(coin['id'], coin['name'], coin['price'])
                 cryptoDict[crypto.name] = crypto
         time.sleep(1)
-        self.logger.info(constants.MSG_CALL_API %("retrieveFirstOneHundredCrypto", str(response.status_code), str(crypto)))
+        self.logger.info(Constants.MSG_CALL_API %("retrieveFirstOneHundredCrypto", str(response.status_code), str(crypto)))
         return cryptoDict
 
     def retrieveCryptoById(self, ids: str):
@@ -74,7 +74,7 @@ class CallApiNomics:
                 crypto = Crypto(coin['id'], coin['name'], coin['price'])
                 cryptoDict[crypto.name] = crypto
         time.sleep(1)
-        self.logger.info(constants.MSG_CALL_API %("retrieveCryptoById", str(response.status_code), str(cryptoDict.keys())))
+        self.logger.info(Constants.MSG_CALL_API %("retrieveCryptoById", str(response.status_code), str(cryptoDict.keys())))
         return cryptoDict
 
     def retrieveCryptoAllInformationById(self, ids: str):
@@ -88,7 +88,7 @@ class CallApiNomics:
             for coin in json:
                 cryptoDict[coin['name']] = coin
         time.sleep(1)
-        self.logger.info(constants.MSG_CALL_API %("retrieveCryptoById", str(response.status_code), str(cryptoDict.keys())))
+        self.logger.info(Constants.MSG_CALL_API %("retrieveCryptoById", str(response.status_code), str(cryptoDict.keys())))
         return cryptoDict
 
 

@@ -1,5 +1,5 @@
-from projects.cryptoTracking.src.model.Crypto import Crypto
-from projects.cryptoTracking.src.constants.Constants import Constants as constants
+from src.model.Crypto import Crypto
+from src.constants.Constants import Constants
 
 import requests
 import configparser
@@ -12,7 +12,7 @@ Not used
 class CallApiCoinApi:
 
     config = configparser.ConfigParser()
-    config.read(constants.API_PROPERTIES_FILE_PATH)
+    config.read(Constants.API_PROPERTIES_FILE_PATH)
     headers = {'X-CoinAPI-Key' : config['APICoinSection']['X-CoinAPI-Key']}
 
 
