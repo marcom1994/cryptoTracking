@@ -9,99 +9,7 @@ from projects.cryptoTracking.src.model.Crypto import Crypto
 from projects.cryptoTracking.src.telegram.HandlerTelegram import HandlerTelegram
 from projects.cryptoTracking.src.dao.converterExchange.CallApiAlphaVantage import CallApiAlphaVantage
 
-import time
 import schedule
-
-
-'''
-class CryptoTrackingMain:
-    logger = logging.getLogger("logger")
-    callApiAlphaVantage = CallApiAlphaVantage()
-
-    config = configparser.ConfigParser()
-    config.read(constants.TELEGRAM_PROPERTIES_FILE_PATH)
-    bot_token = config['TelegramBot']['token']
-    bot_chatID = config['TelegramBot']['chat-id']
-
-    def __init__(self):
-        self
-
-
-    # Configuration logging (DEBUG,INFO,WARNING,ERROR) (From the lowest level of detail to the highest level of detail)
-    # When the logs have reached the 'MAX_SIZE_LOG' create a new file (PATH_LOG) and rename all others files. 
-    # It does this until MAX_FILES_LOG, then delete the oldest and continue.
-    def defineLogging(self):
-        logger = logging.getLogger("logger")
-        logger.setLevel(logging.INFO)
-        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-        logger.propagate=False  # Non propaga i log anche in console
-        file_handler = RotatingFileHandler(constants.PATH_LOG, maxBytes=constants.MAX_SIZE_LOG, backupCount=constants.MAX_FILES_LOG, encoding=constants.ENCODE)
-        file_handler.setLevel(logging.INFO)
-        file_handler.setFormatter(formatter)
-        logger.addHandler(file_handler)
-        
-    def main(self):        
-        self.logger.info("++++++++++ Start CryptoTracking ++++++++++")
-        self.defineLogging()
-        core = CryptoTrackingCore()
-        #core.handlerCrypto()       # If you need to start it only once
-        self.jobScheduleOnMultipleCalls()  # If you need to start it 'n' Se serve avviarlo 'n' times
-    
-    def jobScheduleOnMultipleCalls(self):
-        # Call httpMultipleCalls each 'x' seconds (calculated by the end of the previous call)
-        core = CryptoTrackingCore()
-        core.handlerCrypto() # I make the first call immediately
-        schedule.every(10).seconds.do(core.handlerCrypto)
-        while True:
-            schedule.run_pending()
-            #time.sleep(1)
-
-
-
-
-
-    
-    def startListenerTelegramCommand(self):
-        updater = Updater(self.bot_token)
-        updater.dispatcher.add_handler(CommandHandler("start", self.start))
-        updater.start_polling()
-        updater.idle()
-
-    def start(self, update, context):
-        chat_id = update.effective_chat.id
-        update.message.reply_text("start executed")
-        print("start called from chat with id = {}".format(chat_id))
-        self.cryptoTrackingLauncher.main()
-
-    def stop(self, update, context):
-        chat_id = update.effective_chat.id
-        update.message.reply_text("stop executed")
-        print("stop called from chat with id = {}".format(chat_id))
-        self.cryptoTrackingLauncher.main()
-'''
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 class CryptoTrackingMain:
@@ -194,10 +102,10 @@ class CryptoTrackingMain:
         
     def info(self, update, context):
         chat_id = update.effective_chat.id
-
         if(self.proc and self.proc.is_alive()):
             #TODO: retrieve info from last call to crypto api
             update.message.reply_text("info executed")
+            
             #update.message.reply_text(self.core.cryptoDictTracking['Bitcoin'])
             self.logger.info("---------- Info CryptoTracking called from chat with id = {} ----------".format(chat_id))
             print("---------- info called from chat with id = {} ----------".format(chat_id))

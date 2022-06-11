@@ -12,7 +12,7 @@ X-RapidAPI-Key=<your-key>
 
 ### Create /files/properties/configTelegram.properties and insert into this:
 [TelegramBot]
-token=<yuor-token>
+token=<my-token>
 chat-id=<your-chat-id>
 
 ### Create DB cryptoTracking and execute /files/db/DDL.sql e /files/db/DML.sql

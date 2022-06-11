@@ -20,6 +20,7 @@ class CryptoTrackingCore:
     def callForRetriveCryptoPrice(self, firstCall):
         if(firstCall):
             self.defineInternalLogging()
+
         handlerApi = HandlerAPI()
         handlerTelegram = HandlerTelegram()
 
@@ -58,6 +59,7 @@ class CryptoTrackingCore:
                     newPriceToSell = priceToSell + ((priceToSell * 5) / 100)
                     cryptoTrackDAO.updateCryptoLimitPriceSellToTrack(crypto.uuid, newPriceToSell)
                     handlerTelegram.telegram_bot_sendtext("Best moment to sell this crypto: " + str(crypto))
+
         self.logger.info("********** END: Call to retrieve Crypto pricing **********")
         return cryptoDictTracking
         

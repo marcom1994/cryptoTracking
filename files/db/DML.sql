@@ -2,7 +2,7 @@
 INSERT INTO public.exchange_rate (timestamp_last_call, exchange_rate_value) VALUES('2022-06-06 22:04:04.345', 0.9348);
 
 /* crypto_track */
-INSERT INTO public.crypto_track (id, name, limit_value_buy, limit_value_sell) VALUES (90, 'Bitcoint', 24000.00, 40000.00);
+INSERT INTO public.crypto_track (id, name, limit_value_buy, limit_value_sell) VALUES (90, 'Bitcoin', 24000.00, 40000.00);
 INSERT INTO public.crypto_track (id, name, limit_value_buy, limit_value_sell) VALUES (80, 'Ethereum', 1580.00, 2800.00);
 INSERT INTO public.crypto_track (id, name, limit_value_buy, limit_value_sell) VALUES (257, 'Cardano', 0.40, 0.80);
 INSERT INTO public.crypto_track (id, name, limit_value_buy, limit_value_sell) VALUES (34406, 'Algorand', 0.33, 0.80);

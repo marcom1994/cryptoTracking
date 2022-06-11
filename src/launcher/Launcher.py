@@ -6,8 +6,7 @@ sys.path.append(os.path.dirname(SCRIPT_DIR))
 
 from projects.cryptoTracking.src.launcher.CryptoTrackingMain import CryptoTrackingMain
 
-#TODO: assicurarsi che non ci siano info personali nel progetto, creare un repo git e un file .gitignore con dentro configAPI.properties
-# e configTelegram.properties
+
 #TODO: Aggiungere il comando /info per ottenere informazioni sull'ultima call alle api
 
 

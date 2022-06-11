@@ -3,3 +3,4 @@ logs/*
 files/properties/*
 
 !files/properties/configDB.properties
+.vercel

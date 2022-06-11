@@ -48,8 +48,8 @@ class CallApiCoinLore:
             x+=1
             response = requests.request("GET", endpoint, headers=self.headers, params=querystring)
 
-            json = response.json()
             try:
+                json = response.json()
                 data = json['data']
                 for coin in data:
                     crypto = Crypto(coin['id'], coin['name'], coin['price_usd'], coin['rank'])
@@ -77,8 +77,8 @@ class CallApiCoinLore:
         response = requests.request("GET", endpoint, headers=self.headers, params=querystring)
 
         crypto = None
-        json = response.json()
         try:
+            json = response.json()
             for coin in json:
                 crypto = Crypto(coin['id'], coin['name'], coin['price_usd'], coin['rank'])
                 #print(crypto)
