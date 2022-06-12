@@ -89,7 +89,6 @@ class CallApiCoinLore:
             print(Constants.MSG_CALL_API %("retrieveCryptoById", str(response.status_code), str(e)))
             self.logger.error(Constants.MSG_CALL_API %("retrieveCryptoById", str(response.status_code), str(e)))
         time.sleep(1)
-        crypto=None
         if(crypto):
             self.logger.info(Constants.MSG_CALL_API_ONLY_STATUS_CODE %("retrieveCryptoById", str(response.status_code)))
         else:
