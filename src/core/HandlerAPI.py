@@ -18,7 +18,7 @@ class HandlerAPI:
 
     def retrieveFirstNCrypto(self, number, currency=constants.DEFAULT_CURRENCY):
         cryptoDict = self.callApiCoinLore.retrieveFirstNCrypto(number)
-        if("USD"!=currency):
+        if(cryptoDict and "USD"!=currency):
             exchangeRate = self.__updateExchangeRate__(currency)
             for crypto in cryptoDict.keys():
                 price = float(cryptoDict[crypto].price) * float(exchangeRate)
@@ -27,7 +27,7 @@ class HandlerAPI:
 
     def retrieveCryptoById(self, id, currency=constants.DEFAULT_CURRENCY):
         crypto = self.callApiCoinLore.retrieveCryptoById(id)
-        if("USD"!=currency):
+        if(crypto and "USD"!=currency):
             exchangeRate = self.__updateExchangeRate__(currency)
             crypto.price = float(crypto.price) * float(exchangeRate)
         return crypto

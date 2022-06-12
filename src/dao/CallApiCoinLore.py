@@ -59,7 +59,10 @@ class CallApiCoinLore:
                 print(Constants.MSG_CALL_API %("retrieveFirstNCrypto", str(response.status_code), str(e)))
                 self.logger.error(Constants.MSG_CALL_API %("retrieveFirstNCrypto", str(response.status_code), str(e)))
             time.sleep(1)
-            self.logger.info(Constants.MSG_CALL_API_ONLY_STATUS_CODE %("retrieveFirstNCrypto", str(response.status_code)))
+            if(cryptoDict):
+                self.logger.info(Constants.MSG_CALL_API_ONLY_STATUS_CODE %("retrieveFirstNCrypto", str(response.status_code)))
+            else:
+                self.logger.error(Constants.MSG_CALL_API %("retrieveFirstNCrypto", str(response.status_code), 'ATTENTION: cryptoDict=None or cryptoDict is Empty'))
         return cryptoDict
 
     def __getArrayQueryStringLimit__(self, limitApiForPage, numberCrypto):
@@ -86,7 +89,11 @@ class CallApiCoinLore:
             print(Constants.MSG_CALL_API %("retrieveCryptoById", str(response.status_code), str(e)))
             self.logger.error(Constants.MSG_CALL_API %("retrieveCryptoById", str(response.status_code), str(e)))
         time.sleep(1)
-        self.logger.info(Constants.MSG_CALL_API_ONLY_STATUS_CODE %("retrieveCryptoById", str(response.status_code)))
+        crypto=None
+        if(crypto):
+            self.logger.info(Constants.MSG_CALL_API_ONLY_STATUS_CODE %("retrieveCryptoById", str(response.status_code)))
+        else:
+            self.logger.error(Constants.MSG_CALL_API %("retrieveCryptoById", str(response.status_code), 'ATTENTION: crypto with id '+str(id)+' has value None'))
         return crypto
 
 '''

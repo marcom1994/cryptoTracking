@@ -47,13 +47,13 @@ class CryptoTrackingCore:
         for cryptoName in cryptoDictTracking.keys():
             crypto = cryptoDictTracking[cryptoName]
             self.logger.info(constants.MSG_CRYPTO %("callForRetriveCryptoPrice", str(crypto)))
-            if(cryptoName in cryptoDictToTrackPriceLimitBuy.keys()):
+            if(crypto and cryptoName in cryptoDictToTrackPriceLimitBuy.keys()):
                 if(self.isPriceForBuy(cryptoDictToTrackPriceLimitBuy, crypto)):
                     priceToBuy = cryptoDictToTrackPriceLimitBuy[crypto.name]
                     newPriceToBuy = priceToBuy - ((priceToBuy * 5) / 100)
                     cryptoTrackDAO.updateCryptoLimitPriceBuyToTrack(crypto.uuid, newPriceToBuy)
                     handlerTelegram.telegram_bot_sendtext("Best moment to buy this crypto: " + str(crypto))
-            if(cryptoName in cryptoDictToTrackPriceLimitSell.keys()):
+            if(crypto and cryptoName in cryptoDictToTrackPriceLimitSell.keys()):
                 if(self.isPriceForSell(cryptoDictToTrackPriceLimitSell, crypto)):
                     priceToSell = cryptoDictToTrackPriceLimitSell[crypto.name]
                     newPriceToSell = priceToSell + ((priceToSell * 5) / 100)
