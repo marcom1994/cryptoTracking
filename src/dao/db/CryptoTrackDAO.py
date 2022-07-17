@@ -20,8 +20,8 @@ class CryptoTrackDAO:
 
     def retrieveCryptoToTrack(self):
         cryptoLimitList = []
-        # with(psycopg2.connect(self.dbProperties, sslmode='require') as connection):
-        with(psycopg2.connect(dbname=self.dbProperties['dbname'], user=self.dbProperties['user'], password=self.dbProperties['password'], host=self.dbProperties['host']) as connection):
+        with(psycopg2.connect(self.dbProperties, sslmode='require') as connection):
+        # with(psycopg2.connect(dbname=self.dbProperties['dbname'], user=self.dbProperties['user'], password=self.dbProperties['password'], host=self.dbProperties['host']) as connection):
             cursor = connection.cursor()
             cursor.execute(QueryConstants.RETRIEVE_CRYPTO_TO_TRACK)
             data = cursor.fetchall()
@@ -34,16 +34,16 @@ class CryptoTrackDAO:
         return cryptoLimitList
 
     def updateCryptoLimitPriceBuyToTrack(self, id, price):
-        # with(psycopg2.connect(self.dbProperties, sslmode='require') as connection):
-        with(psycopg2.connect(dbname=self.dbProperties['dbname'], user=self.dbProperties['user'], password=self.dbProperties['password'], host=self.dbProperties['host']) as connection):            
+        with(psycopg2.connect(self.dbProperties, sslmode='require') as connection):
+        # with(psycopg2.connect(dbname=self.dbProperties['dbname'], user=self.dbProperties['user'], password=self.dbProperties['password'], host=self.dbProperties['host']) as connection):            
             cursor = connection.cursor()
             cursor.execute(QueryConstants.UPDATE_CRYPTO_PRICE_BUY_TO_TRACK %(price, id))
             connection.commit()
             cursor.close()
     
     def updateCryptoLimitPriceSellToTrack(self, id, price):
-        # with(psycopg2.connect(self.dbProperties, sslmode='require') as connection):
-        with(psycopg2.connect(dbname=self.dbProperties['dbname'], user=self.dbProperties['user'], password=self.dbProperties['password'], host=self.dbProperties['host']) as connection):
+        with(psycopg2.connect(self.dbProperties, sslmode='require') as connection):
+        # with(psycopg2.connect(dbname=self.dbProperties['dbname'], user=self.dbProperties['user'], password=self.dbProperties['password'], host=self.dbProperties['host']) as connection):
             cursor = connection.cursor()
             cursor.execute(QueryConstants.UPDATE_CRYPTO_PRICE_SELL_TO_TRACK %(price, id))
             connection.commit()
@@ -53,8 +53,8 @@ class CryptoTrackDAO:
 
     def retrieveAllCryptoId(self):
         coinLoreNameToIdDict = {}
-        # with(psycopg2.connect(self.dbProperties, sslmode='require') as connection):
-        with(psycopg2.connect(dbname=self.dbProperties['dbname'], user=self.dbProperties['user'], password=self.dbProperties['password'], host=self.dbProperties['host']) as connection):
+        with(psycopg2.connect(self.dbProperties, sslmode='require') as connection):
+        # with(psycopg2.connect(dbname=self.dbProperties['dbname'], user=self.dbProperties['user'], password=self.dbProperties['password'], host=self.dbProperties['host']) as connection):
             cursor = connection.cursor()
             cursor.execute(QueryConstants.RETRIEVE_ALL_CRYPTO_ID)
             listNameId = cursor.fetchall()
@@ -65,8 +65,8 @@ class CryptoTrackDAO:
         return coinLoreNameToIdDict
 
     def retrieveCryptoIdByName(self, name):
-        # with(psycopg2.connect(self.dbProperties, sslmode='require') as connection):
-        with(psycopg2.connect(dbname=self.dbProperties['dbname'], user=self.dbProperties['user'], password=self.dbProperties['password'], host=self.dbProperties['host']) as connection):
+        with(psycopg2.connect(self.dbProperties, sslmode='require') as connection):
+        # with(psycopg2.connect(dbname=self.dbProperties['dbname'], user=self.dbProperties['user'], password=self.dbProperties['password'], host=self.dbProperties['host']) as connection):
             cursor = connection.cursor()
             cursor.execute(QueryConstants.RETRIEVE_CRYPTO_ID_BY_NAME %(name))
             id = cursor.fetchone()
