@@ -13,8 +13,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def main():
-    cryptoTrackingLauncher = CryptoTrackingMain()
-    cryptoTrackingLauncher.main()
+    return "ciao"
+    # cryptoTrackingLauncher = CryptoTrackingMain()
+    # cryptoTrackingLauncher.main()
 
 if __name__ == "__main__":
     main()
