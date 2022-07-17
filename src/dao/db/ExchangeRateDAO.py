@@ -11,8 +11,8 @@ class ExchangeRateDAO:
     logger = logging.getLogger("logger")
     config = configparser.ConfigParser()
     config.read(Constants.DB_PROPERTIES_FILE_PATH)
-    # dbProperties = config['DBSection']
-    DATABASE_URL = os.environ['DATABASE_URL']
+    dbProperties = config['DBSection']
+    # DATABASE_URL = os.environ['DATABASE_URL']
 
 
     def __init__(self):
@@ -20,7 +20,8 @@ class ExchangeRateDAO:
 
     def retrieveExchangeRateLastCall(self):
         ret=0
-        with(psycopg2.connect(self.DATABASE_URL, sslmode='require') as connection):
+        # with(psycopg2.connect(self.dbProperties, sslmode='require') as connection):
+        with(psycopg2.connect(dbname=self.dbProperties['dbname'], user=self.dbProperties['user'], password=self.dbProperties['password'], host=self.dbProperties['host']) as connection):
             cursor = connection.cursor()
             cursor.execute(QueryConstants.RETRIEVE_EXCHANGE_RATE_LAST_CALL)
             for dateTime, in cursor:
@@ -31,7 +32,8 @@ class ExchangeRateDAO:
 
     def retrieveExchangeRateValue(self):
         ret=0
-        with(psycopg2.connect(self.DATABASE_URL, sslmode='require') as connection):
+        # with(psycopg2.connect(self.dbProperties, sslmode='require') as connection):
+        with(psycopg2.connect(dbname=self.dbProperties['dbname'], user=self.dbProperties['user'], password=self.dbProperties['password'], host=self.dbProperties['host']) as connection):
             cursor = connection.cursor()
             cursor.execute(QueryConstants.RETRIEVE_EXCHANGE_RATE_VALUE)
             for exchangeRateValue, in cursor:
@@ -41,7 +43,8 @@ class ExchangeRateDAO:
         return ret
 
     def updateTimestampExchangeRate(self, exchangeRate):
-        with(psycopg2.connect(self.DATABASE_URL, sslmode='require') as connection):
+        # with(psycopg2.connect(self.dbProperties, sslmode='require') as connection):
+        with(psycopg2.connect(dbname=self.dbProperties['dbname'], user=self.dbProperties['user'], password=self.dbProperties['password'], host=self.dbProperties['host']) as connection):
             cursor = connection.cursor()
             now = datetime.now()
             cursor.execute(QueryConstants.UPDATE_OR_INSERT_EXCHANGE_RATE %(now,exchangeRate,now,exchangeRate))
