@@ -12,8 +12,8 @@ class CryptoTrackDAO:
     logger = logging.getLogger("logger")
     config = configparser.ConfigParser()
     config.read(Constants.DB_PROPERTIES_FILE_PATH)
-    dbProperties = config['DBSection']
-    #dbProperties = os.environ['DATABASE_URL']
+    #dbProperties = config['DBSection']
+    dbProperties = os.environ['DATABASE_URL']
 
     def __init__(self):
         pass
