@@ -1,3 +1,4 @@
+import os
 import logging
 import requests
 import configparser
@@ -7,10 +8,16 @@ from src.constants.Constants import Constants as constants
 class HandlerTelegram:
 
     logger = logging.getLogger("logger")
+    
+    '''
+    # With locale properties:
     config = configparser.ConfigParser()
     config.read(constants.TELEGRAM_PROPERTIES_FILE_PATH)
     bot_token = config['TelegramBot']['token']
     bot_chatID = config['TelegramBot']['chat-id']
+    '''
+    bot_token = os.environ['TELEGRAM_HOST']
+    bot_chatID = os.environ['TELEGRAM_CHATID']
 
     def __init__(self):
         pass

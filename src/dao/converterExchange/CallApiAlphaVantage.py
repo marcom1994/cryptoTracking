@@ -1,6 +1,7 @@
 from src.dao.db.ExchangeRateDAO import ExchangeRateDAO
 from src.constants.Constants import Constants
 
+import os
 import requests
 import configparser
 import datetime
@@ -13,11 +14,18 @@ class CallApiAlphaVantage:
 
     logger = logging.getLogger("logger")
     
+    '''
+    # With locale properties:
     config = configparser.ConfigParser()
     config.read(Constants.API_PROPERTIES_FILE_PATH)
     headers = {
 	    "X-RapidAPI-Host": config['APIAlphaVantageSection']['X-RapidAPI-Host'],
 	    "X-RapidAPI-Key": config['APIAlphaVantageSection']['X-RapidAPI-Key']
+    }
+    '''
+    headers = {
+	    "X-RapidAPI-Host": os.environ['ALPHAVANTAGE_HOST'],
+	    "X-RapidAPI-Key": os.environ['RAPIAPI_PASS']
     }
     
 
