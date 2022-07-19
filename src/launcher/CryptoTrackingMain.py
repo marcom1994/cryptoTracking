@@ -4,6 +4,7 @@ from src.core.CryptoTrackingCore import CryptoTrackingCore
 from logging.handlers import RotatingFileHandler
 import logging
 import configparser
+import os
 from telegram.ext import Updater, CommandHandler
 from src.model.Crypto import Crypto
 from src.telegram.HandlerTelegram import HandlerTelegram
@@ -16,10 +17,16 @@ class CryptoTrackingMain:
     logger = logging.getLogger("logger")
     callApiAlphaVantage = CallApiAlphaVantage()
 
+    '''
+    # With locale properties:
     config = configparser.ConfigParser()
     config.read(Constants.TELEGRAM_PROPERTIES_FILE_PATH)
     bot_token = config['TelegramBot']['token']
     bot_chatID = config['TelegramBot']['chat-id']
+    '''
+
+    bot_token = os.environ['TELEGRAM_HOST']
+    bot_chatID = os.environ['TELEGRAM_CHATID']
 
     core = CryptoTrackingCore()
 
