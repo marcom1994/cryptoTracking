@@ -61,7 +61,6 @@ class CryptoTrackingCore:
                     handlerTelegram.telegram_bot_sendtext("Best moment to sell this crypto: " + str(crypto))
 
         self.logger.info("********** END: Call to retrieve Crypto pricing **********")
-        print("test")
         for cryptoName in cryptoDictTracking.keys():
             print(cryptoDictTracking[cryptoName])
         return cryptoDictTracking
