@@ -24,8 +24,8 @@ class CallApiAlphaVantage:
     }
     '''
     headers = {
-	    "X-RapidAPI-Host": os.environ['ALPHAVANTAGE_HOST'],
-	    "X-RapidAPI-Key": os.environ['RAPIAPI_PASS']
+	    "X-RapidAPI-Host": os.getenv('ALPHAVANTAGE_HOST'),
+	    "X-RapidAPI-Key": os.getenv('RAPIAPI_PASS')
     }
     
 

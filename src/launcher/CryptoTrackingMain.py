@@ -11,6 +11,8 @@ from src.telegram.HandlerTelegram import HandlerTelegram
 from src.dao.converterExchange.CallApiAlphaVantage import CallApiAlphaVantage
 
 import schedule
+from dotenv import load_dotenv
+
 
 
 class CryptoTrackingMain:
@@ -24,9 +26,9 @@ class CryptoTrackingMain:
     bot_token = config['TelegramBot']['token']
     bot_chatID = config['TelegramBot']['chat-id']
     '''
-
-    bot_token = os.environ['TELEGRAM_HOST']
-    bot_chatID = os.environ['TELEGRAM_CHATID']
+    load_dotenv()
+    bot_token = os.getenv('TELEGRAM_HOST')
+    bot_chatID = os.getenv('TELEGRAM_CHATID')
 
     core = CryptoTrackingCore()
 
@@ -69,6 +71,7 @@ class CryptoTrackingMain:
     proc = None
     
     def startListenerTelegramCommand(self):
+        print(self.bot_token)
         updater = Updater(self.bot_token)
         updater.dispatcher.add_handler(CommandHandler("start", self.start))
         updater.dispatcher.add_handler(CommandHandler("stop", self.stop))

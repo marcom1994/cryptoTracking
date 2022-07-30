@@ -16,8 +16,8 @@ class HandlerTelegram:
     bot_token = config['TelegramBot']['token']
     bot_chatID = config['TelegramBot']['chat-id']
     '''
-    bot_token = os.environ['TELEGRAM_HOST']
-    bot_chatID = os.environ['TELEGRAM_CHATID']
+    bot_token = os.getenv('TELEGRAM_HOST')
+    bot_chatID = os.getenv('TELEGRAM_CHATID')
 
     def __init__(self):
         pass

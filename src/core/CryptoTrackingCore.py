@@ -63,6 +63,7 @@ class CryptoTrackingCore:
         self.logger.info("********** END: Call to retrieve Crypto pricing **********")
         for cryptoName in cryptoDictTracking.keys():
             print(cryptoDictTracking[cryptoName])
+        print("--------------------------------------------------------------------------------------------")
         return cryptoDictTracking
         
 
